@@ -12,19 +12,19 @@ The system follows a microservices architecture with AI services, a central API 
 
 ```mermaid
 graph TB
-    subgraph "Frontend Layer"
+    subgraph Frontend["Frontend Layer"]
         PWA[Progressive Web App]
         UI[Responsive UI Components]
         SW[Service Worker]
     end
     
-    subgraph "API Gateway"
+    subgraph Gateway["API Gateway"]
         GW[API Gateway & Load Balancer]
         AUTH[Authentication Service]
         RATE[Rate Limiting]
     end
     
-    subgraph "AI Services"
+    subgraph AIServices["AI Services"]
         CROP[Crop Recommendation AI]
         DISEASE[Disease Detection AI]
         YIELD[Yield Prediction AI]
@@ -34,7 +34,7 @@ graph TB
         SUPPLY[Supply Chain AI]
     end
     
-    subgraph "Core Services"
+    subgraph CoreServices["Core Services"]
         USER[User Management]
         WEATHER[Weather Service]
         GOV[Government Integration]
@@ -42,25 +42,43 @@ graph TB
         COMMUNITY[Community Service]
     end
     
-    subgraph "Data Layer"
+    subgraph DataLayer["Data Layer"]
         CACHE[Redis Cache]
         DB[(PostgreSQL)]
         FILES[File Storage]
         SEARCH[Elasticsearch]
     end
     
-    subgraph "External APIs"
+    subgraph ExternalAPIs["External APIs"]
         WEATHER_API[Weather APIs]
         GOV_API[Government APIs]
         MARKET[Market Price APIs]
     end
     
     PWA --> GW
-    GW --> AI Services
-    GW --> Core Services
-    Core Services --> Data Layer
-    Core Services --> External APIs
-    AI Services --> Data Layer
+    GW --> CROP
+    GW --> DISEASE
+    GW --> YIELD
+    GW --> LIVESTOCK
+    GW --> CHAT
+    GW --> ECO
+    GW --> SUPPLY
+    GW --> USER
+    GW --> WEATHER
+    GW --> GOV
+    GW --> NOTIFY
+    GW --> COMMUNITY
+    USER --> CACHE
+    USER --> DB
+    USER --> FILES
+    USER --> SEARCH
+    WEATHER --> WEATHER_API
+    GOV --> GOV_API
+    SUPPLY --> MARKET
+    CROP --> DB
+    DISEASE --> FILES
+    YIELD --> DB
+    LIVESTOCK --> FILES
 ```
 
 ### Technology Stack
